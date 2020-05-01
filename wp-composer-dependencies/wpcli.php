@@ -1652,9 +1652,7 @@ class WPCLI
 	public function getAssetsPath($path = '')
 	{
 		if (empty($path)) {
-			ob_start();
-			$path = \WP_CLI::run_command(['plugin', 'path'], [], ['quiet']);
-			$path = ob_get_clean();
+			$path = \WP_CLI::runcommand( 'plugin path', [ 'return' => true, 'launch' => true, 'exit_error' => true, 'parse' => false ] );
 		}
 
 		return @dirname($path);
